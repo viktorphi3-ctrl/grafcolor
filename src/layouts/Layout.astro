@@ -42,12 +42,17 @@ const {
     <slot />
     
     <script>
-      // Scroll Reveal Animation
+      // Scroll Reveal Animation com liberação de will-change pós-animação
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
-            observer.unobserve(entry.target); // Evita reflows constantes ao rolar a página depois da primeira vez
+            observer.unobserve(entry.target);
+            // Libera a GPU layer após a animação completar — evita manutenção desnecessária
+            entry.target.addEventListener('transitionend', () => {
+              entry.target.style.willChange = 'auto';
+              entry.target.style.contain = 'none';
+            }, { once: true });
           }
         });
       }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
@@ -61,7 +66,7 @@ const {
         let isScrolled = false;
         window.addEventListener('scroll', () => {
           if (!ticking) {
-            const currentScrollY = window.scrollY; // Lê fora do frame (antes de qualquer possível mutação de DOM no frame)
+            const currentScrollY = window.scrollY;
             window.requestAnimationFrame(() => {
               const shouldBeScrolled = currentScrollY > 50;
               if (shouldBeScrolled !== isScrolled) {
@@ -79,21 +84,29 @@ const {
         }, { passive: true });
       }
 
-      // Mobile menu toggle
-      const menuBtn = document.getElementById('menu-toggle');
-      const mobileMenu = document.getElementById('mobile-menu');
-      if (menuBtn && mobileMenu) {
-        menuBtn.addEventListener('click', () => {
-          mobileMenu.classList.toggle('active');
-          menuBtn.classList.toggle('active');
-        });
-        // Close menu on link click
-        mobileMenu.querySelectorAll('a').forEach(link => {
-          link.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            menuBtn.classList.remove('active');
+      // Mobile menu toggle — diferido para requestIdleCallback (não-crítico)
+      const initMobileMenu = () => {
+        const menuBtn = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (menuBtn && mobileMenu) {
+          menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            menuBtn.classList.toggle('active');
           });
-        });
+          mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+              mobileMenu.classList.remove('active');
+              menuBtn.classList.remove('active');
+            });
+          });
+        }
+      };
+
+      // Adia inicialização do menu mobile para quando o browser estiver ocioso
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(initMobileMenu, { timeout: 2000 });
+      } else {
+        setTimeout(initMobileMenu, 200);
       }
     </script>
   </body>
