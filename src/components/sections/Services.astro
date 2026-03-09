@@ -1,34 +1,42 @@
 ---
+import { Image } from "astro:assets";
+import imgLaser from "../../assets/images/Gravacao-e-recorte-a-laser-ES.webp";
+import imgGrafica from "../../assets/images/Grafica-Aracruz-Rapida.webp";
+import imgVisual from "../../assets/images/Comunicacao-visual-aracruz-1.webp";
+import imgArte from "../../assets/images/Criacao-de-arte-aracruz.webp";
+import imgSite from "../../assets/images/Criacao-de-sites.webp";
+import imgOffice from "../../assets/images/Material-de-escritorio.webp";
+
 const services = [
   {
     title: "Gravação e Recorte a Laser",
     description: "Tecnologia de ponta que dá vida às suas ideias com um toque visualmente atraente.",
-    image: "/Gravacao-e-recorte-a-laser-ES.webp"
+    image: imgLaser
   },
   {
     title: "Gráfica Rápida",
     description: "Garantimos soluções de impressão e acabamentos no mais alto padrão de qualidade.",
-    image: "/Grafica-Aracruz-Rapida.webp"
+    image: imgGrafica
   },
   {
     title: "Comunicação Visual",
     description: "Soluções sob medida que te ajudam a atingir suas metas no alvo dos negócios.",
-    image: "/Comunicacao-visual-aracruz-1.webp"
+    image: imgVisual
   },
   {
     title: "Elaboração e Criação",
     description: "Logomarca, vetorização (redesenho), e layouts para sua comunicação visual.",
-    image: "/Criacao-de-arte-aracruz.webp"
+    image: imgArte
   },
   {
     title: "Criação de Sites",
     description: "Criamos sites e páginas de alta conversão que transformam visitantes em clientes.",
-    image: "/Criacao-de-sites.webp"
+    image: imgSite
   },
   {
     title: "Material de Escritório",
     description: "Somos fornecedores de material de escritório para grandes, médias e pequenas empresas.",
-    image: "/Material-de-escritorio.webp"
+    image: imgOffice
   }
 ];
 ---
@@ -46,12 +54,12 @@ const services = [
         <div class={`glass-card p-6 flex flex-col items-center text-center group reveal animate-delay-${i + 1}`}>
           <!-- Service Image -->
           <div class="w-28 h-28 rounded-full overflow-hidden mb-6 border-2 border-[var(--color-glass-border)] group-hover:border-[var(--color-primary)] transition-all duration-500 relative">
-            <img 
+            <Image 
               src={service.image} 
               alt={service.title}
               class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-              width="112"
-              height="112"
+              width={112}
+              height={112}
               loading="lazy"
             />
             <!-- Subtle gradient overlay -->

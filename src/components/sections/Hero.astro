@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+import impressoraImage from "../../assets/images/impressora.webp";
 ---
 
 <section id="inicio" class="relative min-h-screen flex items-center overflow-hidden pt-20">
@@ -55,12 +57,12 @@
           <div class="absolute inset-0 bg-gradient-to-tr from-[var(--color-primary)]/20 to-[var(--color-secondary)]/20 rounded-3xl blur-2xl scale-110"></div>
           <!-- Image container -->
           <div class="relative rounded-3xl overflow-hidden border border-[var(--color-glass-border)] shadow-2xl shadow-[var(--color-primary)]/10">
-            <img 
-              src="/impressora.webp" 
+            <Image 
+              src={impressoraImage} 
               alt="Impressora industrial GrafColor - Qualidade de impressão profissional" 
               class="w-full h-auto object-cover"
-              width="600"
-              height="400"
+              width={600}
+              height={400}
               loading="eager"
             />
             <!-- Gradient overlay bottom -->
