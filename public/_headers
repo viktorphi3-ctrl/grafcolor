@@ -4,6 +4,10 @@
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
 
+# Fontes self-hosted → cache imutável por 1 ano
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
 # Imagens públicas → cache de 30 dias
 /*.webp
   Cache-Control: public, max-age=2592000, stale-while-revalidate=86400

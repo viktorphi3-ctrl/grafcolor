@@ -27,6 +27,8 @@
     box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
     animation: pulse-glow 2s ease-in-out infinite;
     transition: transform 0.3s ease;
+    /* Composited animation — evita repaint */
+    will-change: filter, transform;
   }
   .whatsapp-float:hover {
     transform: scale(1.1);
