@@ -1,5 +1,6 @@
 ---
-import logoSvg from '../../assets/images/Logo.svg?url';
+import { Image } from 'astro:assets';
+import logoImage from '../../assets/images/logo.webp';
 
 const navLinks = [
   { label: 'Início', href: '#inicio' },
@@ -16,7 +17,7 @@ const navLinks = [
       
       <!-- Logo -->
       <a href="#inicio" class="flex items-center gap-2 group">
-        <img src={logoSvg} alt="GrafColor" class="h-[72px] w-auto" width="240" height="72" loading="eager" fetchpriority="high" decoding="async" />
+        <Image src={logoImage} alt="GrafColor" class="h-[72px] w-auto" width={240} height={72} loading="eager" fetchpriority="high" quality={90} />
       </a>
 
       <!-- Desktop Nav -->
