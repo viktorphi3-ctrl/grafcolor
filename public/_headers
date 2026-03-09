@@ -1,4 +1,17 @@
 # Cloudflare Pages Headers
+
+# Assets com hash de conteúdo → cache imutável por 1 ano
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Imagens públicas → cache de 30 dias
+/*.webp
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+/*.svg
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+# Segurança
 /*
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
