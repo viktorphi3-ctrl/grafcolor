@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import logoImage from '../../assets/images/logo.webp';
+import logoMobile from '../../assets/images/Logo_360_108.webp';
 
 const navLinks = [
   { label: 'Início', href: '#inicio' },
@@ -17,7 +18,10 @@ const navLinks = [
       
       <!-- Logo -->
       <a href="#inicio" class="flex items-center gap-2 group">
-        <Image src={logoImage} alt="GrafColor" class="h-[72px] w-auto" width={240} height={72} loading="eager" fetchpriority="high" quality={90} />
+        <picture>
+          <source media="(max-width: 767px)" srcset={logoMobile.src} width="180" height="54" />
+          <Image src={logoImage} alt="GrafColor" class="h-[72px] w-auto" width={240} height={72} loading="eager" fetchpriority="high" quality={90} />
+        </picture>
       </a>
 
       <!-- Desktop Nav -->
