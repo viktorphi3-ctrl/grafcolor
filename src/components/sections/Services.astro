@@ -1,0 +1,79 @@
+---
+const services = [
+  {
+    title: "Gravação e Recorte a Laser",
+    description: "Tecnologia de ponta que dá vida às suas ideias com um toque visualmente atraente.",
+    image: "/Gravacao-e-recorte-a-laser-ES.webp"
+  },
+  {
+    title: "Gráfica Rápida",
+    description: "Garantimos soluções de impressão e acabamentos no mais alto padrão de qualidade.",
+    image: "/Grafica-Aracruz-Rapida.webp"
+  },
+  {
+    title: "Comunicação Visual",
+    description: "Soluções sob medida que te ajudam a atingir suas metas no alvo dos negócios.",
+    image: "/Comunicacao-visual-aracruz-1.webp"
+  },
+  {
+    title: "Elaboração e Criação",
+    description: "Logomarca, vetorização (redesenho), e layouts para sua comunicação visual.",
+    image: "/Criacao-de-arte-aracruz.webp"
+  },
+  {
+    title: "Criação de Sites",
+    description: "Criamos sites e páginas de alta conversão que transformam visitantes em clientes.",
+    image: "/Criacao-de-sites.webp"
+  },
+  {
+    title: "Material de Escritório",
+    description: "Somos fornecedores de material de escritório para grandes, médias e pequenas empresas.",
+    image: "/Material-de-escritorio.webp"
+  }
+];
+---
+
+<section id="servicos" class="py-24 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-16 reveal">
+      <h2 class="section-title">Principais Serviços</h2>
+      <p class="section-subtitle">O que você precisa?</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {services.map((service, i) => (
+        <div class={`glass-card p-6 flex flex-col items-center text-center group reveal animate-delay-${i + 1}`}>
+          <!-- Service Image -->
+          <div class="w-28 h-28 rounded-full overflow-hidden mb-6 border-2 border-[var(--color-glass-border)] group-hover:border-[var(--color-primary)] transition-all duration-500 relative">
+            <img 
+              src={service.image} 
+              alt={service.title}
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              width="112"
+              height="112"
+              loading="lazy"
+            />
+            <!-- Subtle gradient overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          </div>
+
+          <!-- Content -->
+          <h3 class="text-lg font-bold text-white mb-3 uppercase tracking-wide">{service.title}</h3>
+          <p class="text-sm text-[var(--color-text-secondary)] mb-6 leading-relaxed">{service.description}</p>
+          
+          <!-- CTA Button -->
+          <a 
+            href={`https://wa.me/5527997276504?text=Olá! Gostaria de saber mais sobre ${service.title}`}
+            class="mt-auto inline-flex items-center gap-2 px-6 py-3 text-sm font-bold uppercase tracking-wider gradient-bg rounded-full text-white hover:shadow-lg hover:shadow-[var(--color-primary)]/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black transition-all duration-300 hover:-translate-y-0.5"
+            target="_blank"
+            rel="noopener"
+          >
+            Contato
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

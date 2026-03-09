@@ -1,0 +1,181 @@
+---
+const testimonials = [
+  {
+    name: "Bruno Carrara",
+    badge: "Local Guide",
+    text: "Ótimo atendimento. Cotei serviços de impressão de cartões de visita e fui muito bem atendido. O orçamento ficou muito bom e o prazo de entrega também era bem satisfatório. O espaço físico é bem organizado e a localização é excelente.",
+    rating: 5,
+    date: "há 3 anos"
+  },
+  {
+    name: "André Shinzato",
+    text: "Fiz um trabalho de impressão de um livreto que precisava com urgência e fizeram um excelente trabalho e muito rápido. Recomendo!",
+    rating: 5,
+    date: "há 1 ano"
+  },
+  {
+    name: "Caio Konishi",
+    badge: "Local Guide",
+    text: "Fiz um banner de aproximadamente 2mx2m. A qualidade da imagem foi extraordinária, além do atendimento ter sido muito bom. Parabéns. Recomendo a Grafcolor.",
+    rating: 5,
+    date: "há 2 anos"
+  },
+  {
+    name: "Jaqueline Polez",
+    text: "Atendimento excelente, o designer da arte perfeito, material de qualidade, e a entrega foi dentro do prazo do combinado, recomendo.",
+    rating: 5,
+    date: "há 5 anos"
+  },
+  {
+    name: "Pedro Henrique",
+    text: "Preço justo, artes de excelente qualidade e bom atendimento. Variedade em serviços e ótima localização.",
+    rating: 5,
+    date: "há 5 anos"
+  },
+  {
+    name: "Stéfany Carvalho",
+    text: "Excelente atendimento, produtos e serviços de qualidade e preço justo.",
+    rating: 5,
+    date: "há 4 anos"
+  },
+  {
+    name: "Douglas Tiago Ito",
+    text: "Preço justo. Trabalho de qualidade. Pontualidade. Excelente atendimento.",
+    rating: 5,
+    date: "há 5 anos"
+  },
+  {
+    name: "Letícia Garcia Tirado",
+    text: "Excelente atendimento e qualidade nos serviços. Super indico.",
+    rating: 5,
+    date: "há 4 anos"
+  },
+  {
+    name: "José Nilson Antunes",
+    text: "Entrega rápida, bom preço e profissionais competentes.",
+    rating: 5,
+    date: "há 5 anos"
+  },
+  {
+    name: "Rodrigo Garcia",
+    text: "SUPER INDICO! A melhor da cidade!!",
+    rating: 5,
+    date: "há 4 anos"
+  },
+  {
+    name: "Ioná Caballero",
+    text: "Adoreiii o atendimento, preço e qualidade. Super recomendo ;)",
+    rating: 5,
+    date: "há 5 anos"
+  },
+  {
+    name: "Rafael Fudil",
+    text: "Serviço de qualidade e excelência!",
+    rating: 5,
+    date: "há 1 ano"
+  },
+  {
+    name: "Carla Mascaro",
+    text: "Ótimo atendimento, Qualidade top!",
+    rating: 5,
+    date: "há 5 anos"
+  },
+  {
+    name: "Bruno",
+    text: "Qualidade, confiança e preço justo!",
+    rating: 5,
+    date: "há 1 ano"
+  },
+  {
+    name: "Paulo Vicente",
+    badge: "Local Guide",
+    text: "Recomendo! Serviços de qualidade.",
+    rating: 5,
+    date: "há 3 anos"
+  },
+];
+
+function getInitials(name: string) {
+  return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+}
+---
+
+<section id="depoimentos" class="section-padding relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section header -->
+    <div class="text-center mb-16 reveal">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4">
+        DEPOIMENTOS
+      </h2>
+      <p class="text-[var(--color-text-secondary)] text-lg max-w-2xl mx-auto">
+        Avaliações reais dos nossos clientes no Google — nota <span class="gradient-text font-bold">5.0 ★</span> com 20 avaliações
+      </p>
+      <!-- Google badge -->
+      <div class="flex items-center justify-center gap-2 mt-4">
+        <svg width="20" height="20" viewBox="0 0 48 48" class="inline-block">
+          <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/>
+          <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/>
+          <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/>
+          <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/>
+        </svg>
+        <span class="text-sm text-[var(--color-text-muted)]">Verificado pelo Google</span>
+      </div>
+    </div>
+
+    <!-- Testimonials grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {testimonials.map((t, i) => (
+        <div class={`glass-card p-6 flex flex-col gap-4 reveal ${i >= 9 ? 'hidden lg:flex' : ''}`} style={`animation-delay: ${i * 0.08}s`}>
+          
+          <!-- Stars -->
+          <div class="flex gap-1">
+            {Array.from({ length: t.rating }).map(() => (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--color-primary)" stroke="none">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            ))}
+          </div>
+
+          <!-- Text -->
+          <p class="text-[var(--color-text-secondary)] text-sm leading-relaxed flex-1">
+            "{t.text}"
+          </p>
+
+          <!-- Author -->
+          <div class="flex items-center gap-3 pt-2 border-t border-white/5">
+            <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-sm font-bold text-white shrink-0">
+              {getInitials(t.name)}
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-white">{t.name}</p>
+              <div class="flex items-center gap-2">
+                <span class="text-xs text-[var(--color-text-muted)]">{t.date}</span>
+                {t.badge && (
+                  <span class="text-xs text-[var(--color-primary)]/70 bg-[var(--color-primary)]/10 px-1.5 py-0.5 rounded">
+                    {t.badge}
+                  </span>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Link to Google -->
+    <div class="text-center mt-10 reveal">
+      <a 
+        href="https://www.google.com/maps/place/Grafcolor/" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+        Ver todas as avaliações no Google Maps
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,46 @@
+---
+const differentials = [
+  {
+    title: "Atendimento Personalizado",
+    description: "Cada projeto é tratado com atenção individual para garantir o melhor resultado.",
+    icon: `<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="url(#dg1)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><defs><linearGradient id="dg1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#ff00ff"/><stop offset="100%" style="stop-color:#7000ff"/></linearGradient></defs><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`
+  },
+  {
+    title: "Qualidade e Experiência",
+    description: "Anos de experiência no mercado garantindo os melhores resultados no segmento.",
+    icon: `<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="url(#dg2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><defs><linearGradient id="dg2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#ff00ff"/><stop offset="100%" style="stop-color:#7000ff"/></linearGradient></defs><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>`
+  },
+  {
+    title: "Serviços Exclusivos",
+    description: "Tecnologia de ponta como gravação a laser e soluções personalizadas únicas.",
+    icon: `<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="url(#dg3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><defs><linearGradient id="dg3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#ff00ff"/><stop offset="100%" style="stop-color:#7000ff"/></linearGradient></defs><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`
+  },
+  {
+    title: "Suporte ao Cliente",
+    description: "Acompanhamento em todas as etapas, do orçamento à entrega final do produto.",
+    icon: `<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="url(#dg4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><defs><linearGradient id="dg4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#ff00ff"/><stop offset="100%" style="stop-color:#7000ff"/></linearGradient></defs><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>`
+  }
+];
+---
+
+<section class="py-24 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-16 reveal">
+      <h2 class="section-title">Diferenciais</h2>
+      <p class="section-subtitle">Por que escolher a GrafColor</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {differentials.map((diff, i) => (
+        <div class={`glass-card p-8 text-center group reveal animate-delay-${i + 1}`}>
+          <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-[var(--color-glass)] border border-[var(--color-glass-border)] flex items-center justify-center group-hover:border-[var(--color-primary)] transition-all duration-300 group-hover:scale-110">
+            <Fragment set:html={diff.icon} />
+          </div>
+          <h3 class="text-base font-bold text-white uppercase tracking-wide mb-3">{diff.title}</h3>
+          <p class="text-sm text-[var(--color-text-secondary)] leading-relaxed">{diff.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

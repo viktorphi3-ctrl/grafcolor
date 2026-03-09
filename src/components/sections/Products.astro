@@ -1,0 +1,51 @@
+---
+const products = [
+  "Placas de Sinalização Industrial",
+  "Banners e Placas",
+  "Adesivos e Rótulos",
+  "Cartão de Visita",
+  "Cartão Fidelidade",
+  "Carimbos",
+  "Pastas",
+  "Embalagens",
+  "Envelopes",
+  "Crachás",
+  "Timbrados",
+  "Receituários",
+  "Tags e Etiquetas",
+  "Panfletos e Folders",
+  "Revistas",
+  "Livros",
+  "Agendas",
+  "Encadernações",
+  "Adesivo Personalizado",
+  "Convites",
+  "Cardápios",
+  "Adesivação em Veículos"
+];
+---
+
+<section id="portfolio" class="py-24 relative bg-[var(--color-bg-surface)]/50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-16 reveal">
+      <h2 class="section-title">Todos os Produtos e Serviços</h2>
+      <p class="section-subtitle">Confira nossa linha completa de soluções</p>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4 reveal">
+      {products.map((product, index) => (
+        <div class={`flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-xl bg-[var(--color-glass)] border transition-all duration-300 group ${index === 0 ? 'border-[var(--color-primary)] shadow-lg shadow-[var(--color-primary)]/20 scale-[1.02] sm:scale-105' : 'border-[var(--color-glass-border)] hover:border-[var(--color-primary)]/50'}`}>
+          <div class={`flex-shrink-0 w-6 h-6 rounded-full gradient-bg flex items-center justify-center ${index === 0 ? 'animate-pulse shadow-md shadow-[var(--color-primary)]' : ''}`}>
+             {index === 0 ? (
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+             ) : (
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+             )}
+          </div>
+          <span class={`text-sm group-hover:text-white transition-colors ${index === 0 ? 'text-white font-bold' : 'text-[var(--color-text-secondary)]'}`}>{product}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a0020"/>
+      <stop offset="50%" style="stop-color:#0a0a0a"/>
+      <stop offset="100%" style="stop-color:#100020"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff00ff;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#7000ff;stop-opacity:0.1"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#bg)"/>
+  <!-- Printer body -->
+  <rect x="80" y="120" width="440" height="160" rx="10" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+  <rect x="100" y="140" width="400" height="20" rx="5" fill="url(#accent)"/>
+  <!-- Print output -->
+  <rect x="120" y="280" width="360" height="60" rx="3" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+  <rect x="130" y="290" width="80" height="40" rx="2" fill="#ff00ff" opacity="0.6"/>
+  <rect x="220" y="290" width="80" height="40" rx="2" fill="#cc00ff" opacity="0.5"/>
+  <rect x="310" y="290" width="80" height="40" rx="2" fill="#9900ff" opacity="0.5"/>
+  <rect x="400" y="290" width="70" height="40" rx="2" fill="#7000ff" opacity="0.4"/>
+  <!-- Glow effects -->
+  <circle cx="300" cy="200" r="120" fill="#ff00ff" opacity="0.04"/>
+  <circle cx="200" cy="180" r="80" fill="#7000ff" opacity="0.06"/>
+  <!-- Detail lines -->
+  <rect x="110" y="180" width="380" height="2" rx="1" fill="#ff00ff" opacity="0.2"/>
+  <rect x="110" y="220" width="380" height="2" rx="1" fill="#7000ff" opacity="0.15"/>
+</svg>
