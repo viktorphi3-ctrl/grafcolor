@@ -31,6 +31,7 @@ const {
     <!-- Preloads para fontes self-hosted (elimina latência de rede) -->
     <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="modulepreload" href="/scripts/main.js" />
     
     <title>{title}</title>
   </head>
@@ -42,6 +43,6 @@ const {
     
     <slot />
     
-    <script type="module" src="/scripts/main.js"></script>
+    <script type="module" is:inline>import"/scripts/main.js";</script>
   </body>
 </html>
