@@ -6,22 +6,6 @@ const runWhenIdle = (callback, timeout = 2000) => {
   window.setTimeout(callback, 200);
 };
 
-const initGTM = () => {
-  if (window.__gtmLoaded) return;
-
-  const gtmId = document.body?.dataset?.gtmId;
-  if (!gtmId) return;
-
-  window.__gtmLoaded = true;
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
-
-  const gtmScript = document.createElement("script");
-  gtmScript.async = true;
-  gtmScript.src = `https://www.googletagmanager.com/gtm.js?id=${encodeURIComponent(gtmId)}`;
-  document.head.appendChild(gtmScript);
-};
-
 const initScrollReveal = () => {
   const revealElements = document.querySelectorAll(".reveal");
   if (!revealElements.length) return;
@@ -130,10 +114,6 @@ const scheduleNonCriticalUI = () => {
 };
 
 initHeaderScroll();
-
-["pointerdown", "keydown", "touchstart"].forEach((eventName) => {
-  window.addEventListener(eventName, initGTM, { once: true, passive: true });
-});
 
 if (document.readyState === "complete") {
   scheduleNonCriticalUI();
