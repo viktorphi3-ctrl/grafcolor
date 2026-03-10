@@ -6,6 +6,11 @@ const runWhenIdle = (callback, timeout = 2000) => {
   window.setTimeout(callback, 200);
 };
 
+const pushDataLayerEvent = (eventName, params = {}) => {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: eventName, ...params });
+};
+
 const initScrollReveal = () => {
   const revealElements = document.querySelectorAll(".reveal");
   if (!revealElements.length) return;
@@ -101,9 +106,53 @@ const initContactForm = () => {
     form.classList.add("hidden");
     success.classList.remove("hidden");
 
+    if (typeof window.__loadGTM === "function") {
+      window.__loadGTM("contact_form_submit");
+    }
+
+    pushDataLayerEvent("whatsapp_click", {
+      event_category: "lead",
+      event_label: "contact_form",
+      link_text: "form_submit",
+      link_url: waUrl,
+      page_path: window.location.pathname,
+    });
+
     window.setTimeout(() => {
       window.open(waUrl, "_blank");
     }, 1000);
+  });
+};
+
+const initWhatsAppTracking = () => {
+  if (document.body.dataset.whatsappTrackingInitialized === "true") return;
+  document.body.dataset.whatsappTrackingInitialized = "true";
+
+  document.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+
+    const link = target.closest("a[href*='wa.me/']");
+    if (!link) return;
+
+    if (typeof window.__loadGTM === "function") {
+      window.__loadGTM("whatsapp_click");
+    }
+
+    const source = link.getAttribute("data-wa-source") || "unknown";
+    const label = (
+      link.getAttribute("aria-label") ||
+      link.textContent ||
+      "whatsapp"
+    ).trim();
+
+    pushDataLayerEvent("whatsapp_click", {
+      event_category: "engagement",
+      event_label: source,
+      link_text: label.slice(0, 80),
+      link_url: link.href,
+      page_path: window.location.pathname,
+    });
   });
 };
 
@@ -114,6 +163,7 @@ const scheduleNonCriticalUI = () => {
 };
 
 initHeaderScroll();
+initWhatsAppTracking();
 
 if (document.readyState === "complete") {
   scheduleNonCriticalUI();
