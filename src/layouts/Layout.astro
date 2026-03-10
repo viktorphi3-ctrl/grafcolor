@@ -13,14 +13,6 @@ const {
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <!-- Google Tag Manager -->
-    <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-594CC5FX');</script>
-    <!-- End Google Tag Manager -->
-    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
@@ -51,12 +43,27 @@ const {
     <slot />
     
     <script>
+      const GTM_ID = 'GTM-594CC5FX';
+
       const runWhenIdle = (callback, timeout = 2000) => {
         if ('requestIdleCallback' in window) {
           requestIdleCallback(callback, { timeout });
           return;
         }
         setTimeout(callback, 200);
+      };
+
+      const initGTM = () => {
+        if (window.__gtmLoaded) return;
+        window.__gtmLoaded = true;
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
+
+        const gtmScript = document.createElement('script');
+        gtmScript.async = true;
+        gtmScript.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`;
+        document.head.appendChild(gtmScript);
       };
 
       const initScrollReveal = () => {
@@ -123,9 +130,16 @@ const {
       const scheduleNonCriticalUI = () => {
         runWhenIdle(initScrollReveal);
         runWhenIdle(initMobileMenu);
+        runWhenIdle(initGTM, 5000);
       };
 
       initHeaderScroll();
+
+      // If user interacts early, prioritize analytics after first input.
+      ['pointerdown', 'keydown', 'touchstart'].forEach((eventName) => {
+        window.addEventListener(eventName, initGTM, { once: true, passive: true });
+      });
+
       if (document.readyState === 'complete') {
         scheduleNonCriticalUI();
       } else {
