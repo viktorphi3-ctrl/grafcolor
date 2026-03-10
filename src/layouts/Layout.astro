@@ -51,71 +51,85 @@ const {
     <slot />
     
     <script>
-      // Scroll Reveal Animation com liberação de will-change pós-animação
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
+      const runWhenIdle = (callback, timeout = 2000) => {
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(callback, { timeout });
+          return;
+        }
+        setTimeout(callback, 200);
+      };
+
+      const initScrollReveal = () => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
             entry.target.classList.add('visible');
             observer.unobserve(entry.target);
-            // Libera a GPU layer após a animação completar — evita manutenção desnecessária
             entry.target.addEventListener('transitionend', () => {
               entry.target.style.willChange = 'auto';
               entry.target.style.contain = 'none';
             }, { once: true });
-          }
-        });
-      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+          });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+      };
 
-      // Header scroll effect
-      const header = document.getElementById('main-header');
-      if (header) {
+      const initHeaderScroll = () => {
+        const header = document.getElementById('main-header');
+        if (!header) return;
+
         let ticking = false;
         let isScrolled = false;
-        window.addEventListener('scroll', () => {
-          if (!ticking) {
-            const currentScrollY = window.scrollY;
-            window.requestAnimationFrame(() => {
-              const shouldBeScrolled = currentScrollY > 50;
-              if (shouldBeScrolled !== isScrolled) {
-                if (shouldBeScrolled) {
-                  header.classList.add('scrolled');
-                } else {
-                  header.classList.remove('scrolled');
-                }
-                isScrolled = shouldBeScrolled;
-              }
-              ticking = false;
-            });
-            ticking = true;
-          }
-        }, { passive: true });
-      }
 
-      // Mobile menu toggle — diferido para requestIdleCallback (não-crítico)
+        window.addEventListener('scroll', () => {
+          if (ticking) return;
+          const currentScrollY = window.scrollY;
+          window.requestAnimationFrame(() => {
+            const shouldBeScrolled = currentScrollY > 50;
+            if (shouldBeScrolled !== isScrolled) {
+              if (shouldBeScrolled) {
+                header.classList.add('scrolled');
+              } else {
+                header.classList.remove('scrolled');
+              }
+              isScrolled = shouldBeScrolled;
+            }
+            ticking = false;
+          });
+          ticking = true;
+        }, { passive: true });
+      };
+
       const initMobileMenu = () => {
         const menuBtn = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
-        if (menuBtn && mobileMenu) {
-          menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            menuBtn.classList.toggle('active');
+        if (!menuBtn || !mobileMenu) return;
+
+        menuBtn.addEventListener('click', () => {
+          mobileMenu.classList.toggle('active');
+          menuBtn.classList.toggle('active');
+        });
+
+        mobileMenu.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            menuBtn.classList.remove('active');
           });
-          mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-              mobileMenu.classList.remove('active');
-              menuBtn.classList.remove('active');
-            });
-          });
-        }
+        });
       };
 
-      // Adia inicialização do menu mobile para quando o browser estiver ocioso
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(initMobileMenu, { timeout: 2000 });
+      // Keep first paint free: run non-critical UI setup after load/idle.
+      const scheduleNonCriticalUI = () => {
+        runWhenIdle(initScrollReveal);
+        runWhenIdle(initMobileMenu);
+      };
+
+      initHeaderScroll();
+      if (document.readyState === 'complete') {
+        scheduleNonCriticalUI();
       } else {
-        setTimeout(initMobileMenu, 200);
+        window.addEventListener('load', scheduleNonCriticalUI, { once: true });
       }
     </script>
   </body>
