@@ -34,7 +34,7 @@ const {
     
     <title>{title}</title>
   </head>
-  <body class="antialiased">
+  <body class="antialiased" data-gtm-id="GTM-594CC5FX">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-594CC5FX"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -42,109 +42,6 @@ const {
     
     <slot />
     
-    <script>
-      const GTM_ID = 'GTM-594CC5FX';
-
-      const runWhenIdle = (callback, timeout = 2000) => {
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(callback, { timeout });
-          return;
-        }
-        setTimeout(callback, 200);
-      };
-
-      const initGTM = () => {
-        if (window.__gtmLoaded) return;
-        window.__gtmLoaded = true;
-
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
-
-        const gtmScript = document.createElement('script');
-        gtmScript.async = true;
-        gtmScript.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`;
-        document.head.appendChild(gtmScript);
-      };
-
-      const initScrollReveal = () => {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-            entry.target.addEventListener('transitionend', () => {
-              entry.target.style.willChange = 'auto';
-              entry.target.style.contain = 'none';
-            }, { once: true });
-          });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-      };
-
-      const initHeaderScroll = () => {
-        const header = document.getElementById('main-header');
-        if (!header) return;
-
-        let ticking = false;
-        let isScrolled = false;
-
-        window.addEventListener('scroll', () => {
-          if (ticking) return;
-          const currentScrollY = window.scrollY;
-          window.requestAnimationFrame(() => {
-            const shouldBeScrolled = currentScrollY > 50;
-            if (shouldBeScrolled !== isScrolled) {
-              if (shouldBeScrolled) {
-                header.classList.add('scrolled');
-              } else {
-                header.classList.remove('scrolled');
-              }
-              isScrolled = shouldBeScrolled;
-            }
-            ticking = false;
-          });
-          ticking = true;
-        }, { passive: true });
-      };
-
-      const initMobileMenu = () => {
-        const menuBtn = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (!menuBtn || !mobileMenu) return;
-
-        menuBtn.addEventListener('click', () => {
-          mobileMenu.classList.toggle('active');
-          menuBtn.classList.toggle('active');
-        });
-
-        mobileMenu.querySelectorAll('a').forEach((link) => {
-          link.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            menuBtn.classList.remove('active');
-          });
-        });
-      };
-
-      // Keep first paint free: run non-critical UI setup after load/idle.
-      const scheduleNonCriticalUI = () => {
-        runWhenIdle(initScrollReveal);
-        runWhenIdle(initMobileMenu);
-        runWhenIdle(initGTM, 5000);
-      };
-
-      initHeaderScroll();
-
-      // If user interacts early, prioritize analytics after first input.
-      ['pointerdown', 'keydown', 'touchstart'].forEach((eventName) => {
-        window.addEventListener(eventName, initGTM, { once: true, passive: true });
-      });
-
-      if (document.readyState === 'complete') {
-        scheduleNonCriticalUI();
-      } else {
-        window.addEventListener('load', scheduleNonCriticalUI, { once: true });
-      }
-    </script>
+    <script type="module" src="/scripts/main.js"></script>
   </body>
 </html>

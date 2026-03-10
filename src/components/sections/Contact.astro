@@ -104,31 +104,5 @@
   </div>
 </section>
 
-<script>
-  const form = document.getElementById('contact-form') as HTMLFormElement;
-  const success = document.getElementById('form-success');
-  
-  if (form && success) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      
-      const formData = new FormData(form);
-      const nome = formData.get('nome');
-      const whatsapp = formData.get('whatsapp');
-      const assunto = formData.get('assunto') || 'Orçamento';
-      const mensagem = formData.get('mensagem') || '';
-      
-      // Build WhatsApp message
-      const waMsg = `Olá! Sou ${nome}.\n\nAssunto: ${assunto}\nTelefone: ${whatsapp}\n\n${mensagem}`.trim();
-      const waUrl = `https://wa.me/5527997276504?text=${encodeURIComponent(waMsg)}`;
-      
-      // Show success and redirect
-      form.classList.add('hidden');
-      success.classList.remove('hidden');
-      
-      setTimeout(() => {
-        window.open(waUrl, '_blank');
-      }, 1000);
-    });
-  }
-</script>
+<script type="module" src="/scripts/contact-form.js"></script>
+

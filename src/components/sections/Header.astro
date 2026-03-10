@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import logoImage from '../../assets/images/Logo_360_108.webp';
+import logoImage from '../../assets/images/logo.webp';
 
 const navLinks = [
   { label: 'Início', href: '#inicio' },
@@ -23,12 +23,12 @@ const navLinks = [
           class="h-[72px] w-auto"
           width={240}
           height={72}
-          widths={[180, 240]}
+          widths={[180, 240, 360, 480]}
           sizes="(max-width: 767px) 180px, 240px"
           loading="eager"
           fetchpriority="high"
           decoding="sync"
-          quality={90}
+          quality={92}
         />
       </a>
 

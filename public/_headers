@@ -1,23 +1,26 @@
 # Cloudflare Pages Headers
 
-# Assets com hash de conteúdo → cache imutável por 1 ano
+# Hashed assets -> immutable cache for 1 year
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
 
-# Fontes self-hosted → cache imutável por 1 ano
+# Self-hosted fonts -> immutable cache for 1 year
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable
 
-# Imagens públicas → cache de 30 dias
+# Public images -> 30 days cache
 /*.webp
   Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
 
 /*.svg
   Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
 
-# Segurança
+# Security headers
 /*
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Cross-Origin-Opener-Policy: same-origin
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self' https://wa.me; script-src 'self' https://www.googletagmanager.com; script-src-elem 'self' https://www.googletagmanager.com; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src https://www.googletagmanager.com; manifest-src 'self'; upgrade-insecure-requests; require-trusted-types-for 'script'; trusted-types default
