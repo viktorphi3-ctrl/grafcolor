@@ -1,0 +1,101 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/sections/Header.astro';
+import Footer from '../components/sections/Footer.astro';
+import WhatsAppButton from '../components/ui/WhatsAppButton.astro';
+import '../styles/global.css';
+---
+
+<Layout title="Política de Privacidade e Cookies | GrafColor">
+  <Header />
+  
+  <main class="pt-32 pb-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-[var(--color-text)]">
+    <div class="bg-[var(--color-bg-surface)] border border-[var(--color-glass-border)] rounded-2xl p-8 sm:p-12 shadow-sm">
+      <h1 class="text-3xl sm:text-4xl font-bold text-white mb-6">Política de Privacidade e Cookies</h1>
+      <p class="text-[var(--color-text-secondary)] mb-8 leading-relaxed">
+        A Grafcolor Soluções Gráficas valoriza a sua privacidade e se compromete a proteger os seus dados pessoais. Esta Política de Privacidade explica de forma clara e transparente como coletamos, usamos e protegemos as suas informações quando você visita nosso site (<a href="/" class="text-[var(--color-primary)] hover:underline">grafcoloracz.com.br</a>) e entra em contato conosco.
+      </p>
+      <p class="text-[var(--color-text-secondary)] mb-12">
+        Esta política está em conformidade com a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018).
+      </p>
+
+      <section class="mb-10">
+        <h2 class="text-xl font-bold text-white mb-4">Quem somos (Controlador de Dados)</h2>
+        <ul class="space-y-2 text-[var(--color-text-secondary)]">
+          <li><strong>Razão Social:</strong> GRAFCOLOR SOLUCOES GRAFICAS LTDA</li>
+          <li><strong>CNPJ:</strong> 29.494.331/0001-07</li>
+          <li><strong>Endereço:</strong> Av. Venâncio Flores, 1623, Centro, Aracruz - ES</li>
+          <li><strong>Site:</strong> <a href="/" class="text-[var(--color-primary)] hover:underline">https://grafcoloracz.com.br/</a></li>
+        </ul>
+      </section>
+
+      <section class="mb-10">
+        <h2 class="text-2xl font-bold text-white mb-6">1. Quais dados coletamos e para qual finalidade?</h2>
+        <p class="text-[var(--color-text-secondary)] mb-6">Para que nosso site funcione e para podermos atender você com agilidade, lidamos com dois tipos de informações:</p>
+        
+        <div class="mb-6">
+          <h3 class="text-lg font-bold text-white mb-3">A. Dados de Navegação e Cookies (Tráfego e Anúncios)</h3>
+          <p class="text-[var(--color-text-secondary)] mb-3">Quando você acessa nosso site, utilizamos cookies e tecnologias de rastreamento (como o Pixel da Meta/Facebook/Instagram e tags do Google).</p>
+          <ul class="space-y-3 text-[var(--color-text-secondary)] ml-4 list-disc pl-4">
+            <li><strong>O que coletamos:</strong> Seu endereço de IP, tipo de navegador, páginas visitadas em nosso site e de onde você veio (se clicou em um anúncio nosso, por exemplo).</li>
+            <li><strong>Para que usamos:</strong> Esses dados servem exclusivamente para entender como as pessoas usam nosso site, medir a eficiência das nossas campanhas de publicidade e mostrar anúncios relevantes para você. Eles não identificam você pessoalmente de imediato.</li>
+            <li><strong>Seu controle:</strong> Você pode aceitar ou recusar esses cookies através do banner de aviso exibido na sua primeira visita ao site.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-bold text-white mb-3">B. Dados de Contato via WhatsApp</h3>
+          <p class="text-[var(--color-text-secondary)] mb-3">Nosso site não possui formulários extensos. O contato principal é feito diretamente através do nosso botão de WhatsApp.</p>
+          <ul class="space-y-3 text-[var(--color-text-secondary)] ml-4 list-disc pl-4">
+            <li><strong>O que coletamos:</strong> Quando você clica no botão e nos envia uma mensagem, passamos a ter acesso ao seu número de telefone, foto de perfil do aplicativo e os dados que você escolher nos enviar na conversa (como seu nome, e-mail para envio de arquivos ou detalhes do projeto/orçamento).</li>
+            <li><strong>Para que usamos:</strong> O uso do seu WhatsApp é estritamente comercial. Utilizamos seu número apenas para (1) responder sua solicitação de orçamento, (2) enviar prévias de serviços gráficos, (3) combinar entregas e (4) prestar suporte ao cliente. Nós não adicionamos seu número em listas de transmissão genéricas (spam) ou grupos sem o seu consentimento explícito.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="mb-10">
+        <h2 class="text-2xl font-bold text-white mb-6">2. Com quem compartilhamos seus dados?</h2>
+        <p class="text-[var(--color-text-secondary)] mb-4">A Grafcolor não vende, aluga ou troca seus dados pessoais com terceiros. Suas informações são compartilhadas apenas com:</p>
+        <ul class="space-y-3 text-[var(--color-text-secondary)] ml-4 list-disc pl-4">
+          <li><strong>Plataformas de Tecnologia e Marketing:</strong> Ferramentas como Google Analytics, Meta Ads e nossa infraestrutura de hospedagem de sites, que processam os dados de navegação em nosso nome para manter o site seguro e os anúncios funcionando.</li>
+          <li><strong>Obrigações Legais:</strong> Podemos compartilhar dados caso seja exigido por lei ou por ordem judicial.</li>
+        </ul>
+      </section>
+
+      <section class="mb-10">
+        <h2 class="text-2xl font-bold text-white mb-6">3. Por quanto tempo guardamos seus dados?</h2>
+        <div class="space-y-4 text-[var(--color-text-secondary)]">
+          <p>Os dados de contato do WhatsApp e histórico de pedidos são mantidos pelo tempo necessário para prestarmos os serviços gráficos solicitados e para cumprir obrigações fiscais/legais de faturamento.</p>
+          <p>Os dados de cookies de navegação seguem o período de expiração definido por cada plataforma (Google/Meta), podendo ser limpos por você a qualquer momento nas configurações do seu navegador.</p>
+        </div>
+      </section>
+
+      <section class="mb-10">
+        <h2 class="text-2xl font-bold text-white mb-6">4. Quais são os seus direitos?</h2>
+        <p class="text-[var(--color-text-secondary)] mb-4">De acordo com a LGPD, você tem o controle sobre os seus dados. A qualquer momento, você pode nos solicitar:</p>
+        <ul class="space-y-3 text-[var(--color-text-secondary)] ml-4 list-disc pl-4">
+          <li>A confirmação de que tratamos seus dados.</li>
+          <li>O acesso às informações que temos sobre você.</li>
+          <li>A correção de dados incorretos ou desatualizados.</li>
+          <li>A exclusão das suas informações de nossa base de contatos (desde que não precisemos mantê-las por questões fiscais ou para a finalização de um serviço contratado).</li>
+        </ul>
+      </section>
+
+      <section class="mb-10">
+        <h2 class="text-2xl font-bold text-white mb-6">5. Como falar sobre Privacidade conosco?</h2>
+        <p class="text-[var(--color-text-secondary)] leading-relaxed">
+          Se você tiver qualquer dúvida sobre esta política ou quiser exercer seus direitos em relação aos seus dados, basta nos chamar no próprio WhatsApp de atendimento ou enviar um e-mail para: <a href="mailto:contato@grafcoloracz.com.br" class="text-[var(--color-primary)] hover:underline">contato@grafcoloracz.com.br</a>.
+        </p>
+      </section>
+
+      <div class="mt-12 pt-8 border-t border-[var(--color-glass-border)]">
+        <p class="text-sm text-[var(--color-text-muted)] italic">
+          Última atualização: 12 de março de 2026
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+  <WhatsAppButton />
+</Layout>
