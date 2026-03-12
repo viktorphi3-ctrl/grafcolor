@@ -1,0 +1,70 @@
+---
+---
+
+<div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-50 p-4 sm:p-6 transform translate-y-full transition-transform duration-500 ease-out hidden">
+  <div class="max-w-4xl mx-auto glass-card p-6 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl border-[var(--color-primary)]/30">
+    <div class="flex-1">
+      <h3 class="text-white font-bold mb-2">Sua privacidade é importante para nós</h3>
+      <p class="text-sm text-[var(--color-text-secondary)] leading-relaxed">
+        Utilizamos cookies e tecnologias semelhantes para melhorar a sua experiência no nosso site. Ao continuar navegando, você concorda com a nossa 
+        <a href="/politica-de-privacidade-e-cookies" class="text-[var(--color-primary)] hover:underline">Política de Privacidade e Cookies</a>.
+      </p>
+    </div>
+    <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+      <button id="cookie-reject" class="btn-outline !py-3 !px-6 !text-xs whitespace-nowrap justify-center">
+        Recusar
+      </button>
+      <button id="cookie-accept" class="btn-primary !py-3 !px-6 !text-xs whitespace-nowrap justify-center">
+        Aceitar Todos
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Script para gerenciar o aceite de cookies
+  document.addEventListener('DOMContentLoaded', () => {
+    const banner = document.getElementById('cookie-banner');
+    const btnAccept = document.getElementById('cookie-accept');
+    const btnReject = document.getElementById('cookie-reject');
+    
+    // Verifica se já existe preferência salva
+    const cookieConsent = localStorage.getItem('grafcolor_cookie_consent');
+    
+    if (!cookieConsent) {
+      // Exibe o banner após um pequeno atraso
+      setTimeout(() => {
+        if (banner) {
+          banner.classList.remove('hidden');
+          // Força reflow
+          void banner.offsetWidth;
+          banner.classList.remove('translate-y-full');
+        }
+      }, 1000);
+    }
+
+    const hideBanner = (consent: string) => {
+      localStorage.setItem('grafcolor_cookie_consent', consent);
+      
+      if (consent === 'accepted') {
+        // Se usar GTM para disparar tags baseadas no aceite, você pode emitir um evento aqui
+        window.dispatchEvent(new Event('cookie_consent_accepted'));
+      }
+
+      if (banner) {
+        banner.classList.add('translate-y-full');
+        setTimeout(() => {
+          banner.classList.add('hidden');
+        }, 500); // tempo igual ao duration-500
+      }
+    };
+
+    if (btnAccept) {
+      btnAccept.addEventListener('click', () => hideBanner('accepted'));
+    }
+
+    if (btnReject) {
+      btnReject.addEventListener('click', () => hideBanner('rejected'));
+    }
+  });
+</script>

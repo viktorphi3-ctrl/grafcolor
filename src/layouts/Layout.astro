@@ -8,6 +8,8 @@ const {
   title = "GrafColor — Gráfica e Comunicação Visual | Aracruz - ES",
   description = "Transformamos sua visão em realidade com impressões personalizadas e únicas. Gráfica rápida, comunicação visual, gravação a laser e muito mais em Aracruz - ES."
 } = Astro.props;
+
+import CookieBanner from '../components/ui/CookieBanner.astro';
 ---
 
 <!DOCTYPE html>
@@ -47,6 +49,7 @@ const {
     
     <slot />
     
+    <CookieBanner />
     <script type="module" is:inline>import"/scripts/main.js";</script>
   </body>
 </html>
